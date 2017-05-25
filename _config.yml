@@ -1,2 +1,3 @@
 title: Sankha's Site
 exclude: ['Readme.md']
+markdown: redcarpet

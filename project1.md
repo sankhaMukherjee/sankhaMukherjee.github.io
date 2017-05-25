@@ -34,6 +34,15 @@ The OS files may be downloaded [here][RB-Downloads]. The Raspberry Pi has an exc
 
 #### 2. Finding the name of the microSD card
 
+```python
+import pandas as pd
+
+with open('abcd.csv') as f:
+    for l in f:
+        l = l.strip()
+        print(l)
+```
+
 Fod determining the name of the microSD card, use the `df -h` command before and after the memory card has been plugged in, as shown below: 
 
 ```bash
