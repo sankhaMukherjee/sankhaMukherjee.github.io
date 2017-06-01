@@ -4,8 +4,14 @@ title: About
 permalink: /about/
 ---
 
-This is a simple Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/).  Plus, you can find a lot of themes at [jekyllthemes.org](http://jekyllthemes.org/)
+Who Am I?
 
-You can find the source code for this theme at: <data data-icon="ei-sc-github"></data>  [jekyll-simple](https://github.com/wild-flame/jekyll-simple)
+I am a bit of a explorer of sorts. I dabble in computers, data science, Latin dance, math, photography, cooking, painting, and anything else that pops into my mind at a particualr time.
 
-You can find the source code for Jekyll at <data data-icon="ei-sc-github"></data>  [jekyll](https://github.com/jekyll/jekyll)
+I Love lists. So here goes:
+
+ - **Science**: Physics > Math > Chemistry > Biology
+ - **Dance**: Zouk > Salsa > Bachata > Kizomba
+ - **Computer** Language: Python > Anything else so far
+ - **Food**: Indian > Japanese > Mexican > Italian
+ - **Paint**: Oil > Watercolor > Acryllic
