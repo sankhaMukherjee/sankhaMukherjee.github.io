@@ -3,6 +3,7 @@ exclude: ['Readme.md']
 
 # twitter_username: omolluska 
 github_username:  sankhaMukherjee
+linkedin_username: sankhamukherjee
 
 # Build settings
 markdown: kramdown
