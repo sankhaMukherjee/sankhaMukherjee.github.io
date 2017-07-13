@@ -11,9 +11,8 @@ Sampling from an unknown distribution can be relatively difficult. Distributions
 
 
 
-\\(\mathbb{E} [x] = \int{ x \rho(x) dx } \\),
-
-\\(\mathbb{E} [f(x)] = \int{ f(x) \rho(x) dx } \\),
+$$\mathbb{E} [x] = \int{ x \rho(x) dx } $$
+$$\mathbb{E} [f(x)] = \int{ f(x) \rho(x) dx } $$,
 
 
 <br>
