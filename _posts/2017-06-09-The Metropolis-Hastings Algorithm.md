@@ -14,16 +14,11 @@ Sampling from an unknown distribution can be relatively difficult. Distributions
 $$\mathbb{E} [x] = \int{ x \rho(x) dx } $$
 $$\mathbb{E} [f(x)] = \int{ f(x) \rho(x) dx } $$,
 
-
-<br>
-
 In a lot of circumstances, the integrals are practically impossible to calculate in closed form. It might be possible to do numerical integrations over small dimensional spaces or those where the distribution in integrable, but due to the curse of dimensionality, these methods may not be entirely possible. 
 
 An entirely different approach is to *sample* points with the given distribution. Then, the integrals above reduce to summations. That is, given a sample \\(X = [x_1, \ldots, x_N]\\) for large \\(N\\), where \\(X\\) is drawn from the same distribution as \\(\rho(x)\\), the expectations can simply be calculated as:
 
-<div style="text-align:center">
-\\(\mathbb{E} [f(x)] = \frac {1} {N}  \sum _{i} {f(x_i)}  \\),
-</div><br>
+$$\mathbb{E} [f(x)] = \frac {1} {N}  \sum _{i} {f(x_i)}$$
 
 (Note that the \\(1/N\\) only holds for large \\(N\\) in general, but let us not worry about such details).
 
@@ -35,16 +30,16 @@ How many such numbers do we need to generate? Let us take the trivial example of
 
 There is a class of algorithms that belong to the MCMC method that approximates the solution to the problem fairly well. Markov chains (MCs) are state-space problems whose progression to the *next state*  depends solely upon the current state. Given states \\( \{  X_1,  X_2 , \ldots, X_N \} \\), for the transition \\(  X_i  \rightarrow X_j   \\),
 
-<div style="text-align:center">
-\\(  P(X_i  \rightarrow X_j ) =  P(X_j  | X_i ) \\).
-</div><br>
+$$P(X_i  \rightarrow X_j ) =  P(X_j  | X_i )$$
 
 Monte Carlo (the other MC) methods are simply methods of different methods of sampling. MCMC comprises of a set of algorithms that use some very clever methods of sampling distributions. Some of the more popular ones are the the Metropolis-Hastings algorithm, Gibbs sampling, and the slice algorithm. The Metropolis-Hastings algorithm forms the basis of the more complicated Gibbs sampler, so we shall investigate it here. 
 
 The idea of this algorithm is to hover around spaces that have greater distribution probability. Given a random starting point in the input space, the algorithm *steps* through other states, either accepting or rejecting the next state as a legitimate state. For this to work, however, two conditions need to be met:
 
  1. The chain should be able to span the entire space. 
- 2. Detailed balance, which amounts to: \\( P(X_j  | X_i )\rho( X_i ) = P(X_i  | X_j )\rho( X_j ) \\). This is going to make sure that the chain wont get stuck in loops. 
+ 2. Detailed balance, which amounts to: 
+
+ $$P(X_j  | X_i )\rho( X_i ) = P(X_i  | X_j )\rho( X_j )$$This is going to make sure that the chain wont get stuck in loops. 
 
 Now, give that we are in state \\(X_i\\), we need to figure out how to 
 
@@ -55,9 +50,7 @@ Now, give that we are in state \\(X_i\\), we need to figure out how to
 
 This is *typically* done by jumping to a nearby point with a normal distribution. For example, if is a state in an \\((M+1)\\) dimensional space given by the coordinates \\(X_i = (x_{i0}, x_{i1}, \ldots, x_{iM}  )\\), then a jump to the next state can simply be given by:
 
-<div style="text-align:center">
-\\(  x_{jk} = x_{ik} + N(0, \sigma_k) \\), for \\(k = 0, 1, ... M\\).
-</div><br>
+$$ x_{jk} = x_{ik} + N(0, \sigma_k) \ldots k = 0, 1, ... M$$
 
 Here, \\( N(0, \sigma_k) \\) represents a random point selected from a normal distribution with standard deviation \\( \sigma_k \\). Performance improvements often modify this criterion such that this is done more intelligently.
 
@@ -65,15 +58,11 @@ Here, \\( N(0, \sigma_k) \\) represents a random point selected from a normal di
 
 This one is actually neat. Let us say that there is an "acceptance distribution" \\(A(X_j | X_i )\\). Then, the probability of moving to the new state is given by:
 
-<div style="text-align:center">
-\\( P(X_j | X_i)  = g(X_j | X_i) A(X_j | X_i) \\)
-</div><br>
+$$P(X_j | X_i)  = g(X_j | X_i) A(X_j | X_i)$$
 
 Given the above equation, and detailed balance, we come to the following equation:
 
-<div style="text-align:center">
-\\(      \frac {A(X_j | X_i)} {A(X_i | X_j)}  = \frac { \rho( X_i) g(X_i | X_j) }  { \rho( X_j) g(X_j | X_i) }   \\)
-</div><br>
+$$ \frac {A(X_j | X_i)} {A(X_i | X_j)}  = \frac { \rho( X_i) g(X_i | X_j) }  { \rho( X_j) g(X_j | X_i) }$$
 
 We will accept the new state if the numerator is higher than the denominator. So let us write a small function to test this out ...
 
