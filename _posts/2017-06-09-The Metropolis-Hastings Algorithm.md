@@ -58,7 +58,7 @@ Here, \\( N(0, \sigma_k) \\) represents a random point selected from a normal di
 
 **2. Determine is the new state is a good one to jump to:**
 
-This one is actually neat. Let us say that there is an "acceptance distribution" \\( A( X_j | X_i ) \\) . Then, the probability of moving to the new state is given by:
+This one is actually neat. Let us say that there is an "acceptance distribution" $A( X_j | X_i ) $. Then, the probability of moving to the new state is given by:
 
 $$P(X_j | X_i)  = g(X_j | X_i) A(X_j | X_i)$$
 
