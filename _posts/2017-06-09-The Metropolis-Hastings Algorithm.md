@@ -9,14 +9,12 @@ description: MCMC - The Metropolis-Hastings Algo
 
 Sampling from an unknown distribution can be relatively difficult. Distributions allow for the calculations of many stationary parameters associated with the distribution. For a given probability distribution \\(\rho(x)\\) for example, where \\(x\\) is defined over \\(x \in [0,1]\\), Several important quantities may be calculated with this distribution. For example, 
 
-<div style="text-align:center">
+
 
 \\(\mathbb{E} [x] = \int{ x \rho(x) dx } \\),
 
-</div>
-<div style="text-align:center">
 \\(\mathbb{E} [f(x)] = \int{ f(x) \rho(x) dx } \\),
-</div>
+
 
 <br>
 
