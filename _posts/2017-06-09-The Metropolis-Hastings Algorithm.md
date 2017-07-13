@@ -39,7 +39,9 @@ The idea of this algorithm is to hover around spaces that have greater distribut
  1. The chain should be able to span the entire space. 
  2. Detailed balance, which amounts to: 
 
- $$P(X_j  | X_i )\rho( X_i ) = P(X_i  | X_j )\rho( X_j )$$This is going to make sure that the chain wont get stuck in loops. 
+$$P(X_j  | X_i )\rho( X_i ) = P(X_i  | X_j )\rho( X_j )$$ 
+ 
+ This is going to make sure that the chain wont get stuck in loops. 
 
 Now, give that we are in state \\(X_i\\), we need to figure out how to 
 
