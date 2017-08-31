@@ -5,7 +5,7 @@ category: Projects
 description: When Order Emancipates 
 ---
 
-# When Structure Emancipates
+# When Order Emancipates
 
 Some people find structure stifling. However there are legitimate places where order becomes outright liberating. These cases typically revolve around routine tasks. 
 
