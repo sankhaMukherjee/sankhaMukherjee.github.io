@@ -71,7 +71,7 @@ which when expanded, produces all manner of higher-order features.
 
 ## 4. Conclusion
 
-Activated neurons $\approx$ logistic-regression with higher-order features, only better. The result of activations in neural networks is simply to generate a set of highly nonlinear combinations of parameters. If we indeed think of the neural network as a nonlinear form of the regressor/classifier, all mathematics developed for the linear regressor (with added nonlinear coefficients) can be immediately carried forward to the neural network. 
+Activated neurons $\approx$ logistic-regression with higher-order features, only better. The result of activations in neural networks is simply to generate a set of highly nonlinear combinations of parameters. If we indeed think of the neural network as a nonlinear form of the regressor/classifier, all mathematics developed for the linear regressor (with added nonlinear features) can be immediately carried forward to the neural network. 
 
 > Activated neurons $\approx$ logistic-regression with higher-order features, only better. 
 
