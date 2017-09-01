@@ -19,12 +19,12 @@ This goes to the second layer, which has weights \\(\mathbf{W}_2\\). Once these 
 
 $$\mathbf{x}_2 = \mathbf{W}_2 \mathbf{x}_1 = \mathbf{W}_2 \mathbf{W}_1 \mathbf{x}  = \mathbf{W}_{21} \mathbf{x}  $$ 
 
-where, \\(\mathbf{W}_2 \mathbf{W}_1  = \mathbf{W}_{21}\\) . We can continue this process for the rest of the layers of a neural network. Or, we can stop here. The final result is a linear model. 
+where, \\(\mathbf{W}_2 \mathbf{W}_1\\) is represented by the single matrix \\(\mathbf{W}_{21}\\) . We can continue this process for the rest of the layers of a neural network. Or, we can stop here. The final result is a linear model. 
 
 
 ## 2. Revisiting the simple diode mixer
 
-The mathematics of the FM radio is revolves around the idea of a nonlinear mixer. Any nonlinear circuit can mix signals - even the unassuming diode. When the external signal $V_{RF}$ and the the signal from the local oscillator $V_{LO}$ is passed through a diode, it *mixes* them to form higher-order harmonics. Take the example of the simplest unbalanced mixer shown below:
+The mathematics of the FM radio is revolves around the idea of a nonlinear mixer. Any nonlinear circuit can mix signals - even the unassuming diode. When the external signal \\(V_{RF}\\) and the the signal from the local oscillator \\(V_{LO}\\) is passed through a diode, it *mixes* them to form higher-order harmonics. Take the example of the simplest unbalanced mixer shown below:
 
 ![diode mixer](Diode_Mixer.svg)
 
