@@ -23,7 +23,7 @@ Neural networks approximations of functions. Like the ones you have already enco
 
 For the purposes of this and subsequent articles, we shall assume that both \\(  \mathbf x \\) and \\(  \mathbf y \\) are real valued vectors, not necessarily of the same dimensions. 
 
-Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases, for the case of simplicity, we shall call them all weights). We shall represent them with \\( \mathbf W = [\mathbf W_0, \mathbf W_1, \ldots \mathbf W_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
+Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases, for the case of simplicity, we shall call them all weights). We shall represent them with \\( \mathbf W = [\mathbf w_0, \mathbf w_1, \ldots \mathbf w_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
 
 If we represent the neural network with the function 
 
@@ -223,7 +223,141 @@ print(weights1)
 ```
 ### 3.4. The GA Class
 
+A GA class (original code [here](https://github.com/sankhaMukherjee/NNoptExpt/blob/master/src/lib/GAlib/GAlib.py)) is generated that can be used for optimizing a NN. It takes a particular NN class `nnClass` and its corresponding initialization parameters (`initParams`). An internal NN instance is created (`tempN`).
+
+Using this NN, the set of weights is generated that will span the optimization space of the weights. Imagine a population of weights. 
+
+$$ \mathbf P = [ \mathbf W_1, \mathbf W_2, \ldots \mathbf W_{N_{pop}}] $$
+
+We want the algorithm to evolve such that the weights slowly, over several generations, evolve toward \\( \mathbf {W_{Opt}} \\).
+
+For this simple example, to each weight, a random number is added, changing the weight to a certain amount. This generates a randomized population to begin. 
+
+```python
+class GA():
+
+    def __init__(self, nnClass, initParams):
+        self.properConfig = False
+        self.currentErr   = None
+        self.GAconfig     = json.load( open('../config/GAconfig.json') )
+        self.population   = []
+        self.tempN        = nnClass(**initParams) # Use this for temp storage
+        temp = self.tempN.getWeights()
+        for i in tqdm(range(self.GAconfig['numChildren'])):
+            self.population.append( [ t + self.GAconfig['initMultiplier']*(np.random.rand()-0.5)  for t in temp] )
+        
+        self.properConfig = True
+
+        return
+    # more methods here ...
+```
+
+#### 3.4.1. GA overview
+
+> **Note**: There are many ways of doing each of these operations. There is no "right" way of doing GA. Certain methods may be better than others for certain situations. In what follows, we shall keep the methodology to the absolute simplest that is possible.
+
+Here, we shall look briefly at the overview of the algorithm. This is an iterative algorithm. At each iteration, the algorithm does two things:
+
+ - mutation: Where the algorithm giggles weights by a bit with the hope that it will get better by chance
+ - crossover (and selection): gets two of the better weights and generates a weight that is a linear combination of the two. 
+
+Both these will be discussed in greater detail in subsequent sections. 
+
+```python
+    def fit(self, X, y, folder=None, verbose=True):
+        self.err(X, y)
+        for i in range(self.GAconfig['numIterations']):
+            self.mutate()
+            self.crossover(X, y)
+```
+
+The errors are calculated for the entire population to begin with so that the calculations for subsequent calculations is reduced. 
+
+#### 3.4.2. Error Calculations
+The calculation of errors for the population of weights simply involves the calculation of errors corresponding to each set of weights within the populaiton.
+
+```python
+def err(self, X, y):
+        if self.properConfig:
+            self.currentErr = self.tempN.errorValWs(X, y, self.population) 
+        return self.currentErr
+```
+
+#### 3.4.3. Mutation
+
+As we have mentioned before, mutation giggles weights about their current values. In this particularly naive version, it perturbs all weights other than a few of the best. Not touching a few of the best weights is called elitism which makes sure that the best of the population always remain through every iteration. 
+
+```python
+def mutate(self):
+        sortIndex = np.argsort( self.currentErr )
+        self.population = [ self.population[i]  for i in sortIndex ]
+        self.currentErr = [ self.currentErr[i]  for i in sortIndex ]
+
+        for i in range(len(self.population)):
+            if self.GAconfig['elitism']['toDo'] and (i < self.GAconfig['elitism']['numElite']):
+                continue
+            
+            newWeights = []
+            for w in self.population[i]:
+                t = w*( 1 + 2*self.GAconfig['mutation']['multiplier']*(np.random.random(w.shape) - 0.5) )
+                newWeights.append( t )
+
+            self.population[i] = newWeights
+```
+
+#### 3.4.4. Crossover and Selection
+
+Crossover determines how a new population is generated, given the previous population. A new set of weights ($\mathbf {W_{child, m}} $) at the \\(m\\)th poistion of the next population is generated from a couple of weights ($\mathbf {W_i} $ and $\mathbf {W_j} $) from the previous generation. $\mathbf {W_i} $ and $\mathbf {W_j} $ are randomly choses, but the probabilities are weighed based upon their errors. Weights that have lower errors are favored. 
+
+Crossover may be represented as:
+
+$$ \mathbf {W_{child,m}} =   \alpha \mathbf {W_i} + (1-\alpha) \mathbf {W_j} $$ 
+
+Here, \\( \alpha \\) is randomly chosen between 0 and 1. 
+
+Selection represents which weights will make it to the next generation. If the error resulting from \\( \mathbf {W_{child,m}} \\) is less than \\( \mathbf {W_m} \\) then the new weight is selected. Otherwise the old weight is retained. 
+
+```python
+    def crossover(self, X, y):
+
+        sortIndex = np.argsort( self.currentErr )
+        self.populationOld = [ self.population[i]  for i in sortIndex ]
+        self.population    = [ self.population[i]  for i in sortIndex ]
+        
+        self.currentErrOld = [ self.currentErr[i]  for i in sortIndex ]
+        self.currentErr    = [ self.currentErr[i]  for i in sortIndex ]
+        
+        normalize = np.array(self.currentErr).copy()
+        normalize = normalize / normalize.max()
+        normalize = 1 - normalize
+        normalize = normalize / normalize.sum()
+
+        choices = np.random.choice( range(len(self.currentErr)), size=(len(self.population), 2) , p=normalize )
+        alphas  = np.random.random( len(self.currentErr) )
+
+        for i in range(len(self.population)):
+            if self.GAconfig['elitism']['toDo'] and (i < self.GAconfig['elitism']['numElite']):
+                continue
+
+            c1, c2 = choices[i]
+            a = alphas[i]
+
+            w1 = self.populationOld[c1]
+            w2 = self.populationOld[c2]
+            wNew = [ a*m + (1-a)*n  for m, n in zip( w1, w2 ) ]
+
+            errVal = self.tempN.errorValW(X, y, wNew)
+
+            if errVal < self.currentErrOld[i]:
+                self.population[i] = wNew
+                self.currentErr[i] = errVal
+
+        return
+```
+
 ## 4. Results
+
+Given that we have such a simple algorithm, what types of results do we expect?
 
 ## 5. Conclusion
 
