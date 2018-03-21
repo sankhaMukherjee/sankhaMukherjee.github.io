@@ -6,10 +6,10 @@ github_username:  sankhaMukherjee
 linkedin_username: sankhamukherjee
 
 # Build settings
-markdown: kramdown
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
+# markdown: kramdown
+# kramdown:
+#   input: GFM
+#   syntax_highlighter: rouge
 
 # Third-party services
 # just leave someone empty to disable it
