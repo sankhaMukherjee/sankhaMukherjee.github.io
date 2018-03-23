@@ -357,7 +357,17 @@ Selection represents which weights will make it to the next generation. If the e
 
 ## 4. Results
 
-Given that we have such a simple algorithm, what types of results do we expect?
+Given that we have such a simple algorithm, what types of results do we expect? Without iteration, the result output of the "best" gene that is randomly generated looks like the following:
+
+![no iteration](iter0.png)
+
+Here, the \\(x\\)-axis represents the actual output, and the \\(y\\)-axis represents the output predicted by the untrained neural network. After a few tens of iterations, we see that the results of the predictions start approximating the curves a bit better ...
+
+![first few iterations](iter1.png)
+
+We are certainly moving in the right direction. These results might not seem impressive at first, but it is important to note that these are the result of random mutations and crossover. And the algorithms are not even very sophisticated. Now let us look at results from a few 100 iterations ...
+
+
 
 ## 5. Conclusion
 
