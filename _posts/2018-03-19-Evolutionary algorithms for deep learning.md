@@ -365,9 +365,9 @@ Here, the \\(x\\)-axis represents the actual output, and the \\(y\\)-axis repres
 
 ![first few iterations](iter1.png)
 
-We are certainly moving in the right direction. These results might not seem impressive at first, but it is important to note that these are the result of random mutations and crossover. And the algorithms are not even very sophisticated. Now let us look at results from a few 100 iterations ...
+We are certainly moving in the right direction. These results might not seem impressive at first, but it is important to note that these are the result of random mutations and crossover. And the algorithms are not even very sophisticated. Now let us look at results from a few more iterations ...
 
-
+![few more iterations](iter2.png)
 
 ## 5. Conclusion
 
