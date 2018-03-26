@@ -357,7 +357,31 @@ Selection represents which weights will make it to the next generation. If the e
 
 ## 4. Results
 
-Given that we have such a simple algorithm, what types of results do we expect? Without iteration, the result output of the "best" gene that is randomly generated looks like the following:
+Given that we have such a simple algorithm, what types of results do we expect? Let us try to solve the simple model: 
+
+```python
+    X = np.random.rand(2, 10000)
+    y = (  2*X[0, :] + 3*X[1, :] ).reshape(1, -1)
+```
+
+These are 10000 points randomly selected from a range of two independent values. A fairly complex neural network is chosen: 
+
+```python
+    initParams = {
+        "inpSize"      : (2, None), 
+        "opSize"       : (1, None), 
+        "layers"       : (5, 8, 10, 10, 10, 1), 
+        "activations"  : [tf.tanh, tf.tanh, tf.tanh, tf.tanh, tf.tanh, None],
+    }
+```
+
+This results in a model that has a total of 
+
+`2*5 + 5*8 + 8*10 + 10*10*2 + 10*1 = 340`
+
+So, even for a simple problem like this, we are traversing a 340 dimensional space. This is a fairly complex problem for any algorithm, especially, since we are hoping that the algorithm will be able to evolve toward a meaningful solution.
+
+Without iteration, the result output of the "best" gene that is randomly generated looks like the following:
 
 ![no iteration](iter0.png)
 
@@ -368,6 +392,10 @@ Here, the \\(x\\)-axis represents the actual output, and the \\(y\\)-axis repres
 We are certainly moving in the right direction. These results might not seem impressive at first, but it is important to note that these are the result of random mutations and crossover. And the algorithms are not even very sophisticated. Now let us look at results from a few more iterations ...
 
 ![few more iterations](iter2.png)
+
+After several thousands of iterations, the neural network appears to have settled to a solution that is fairly close to the expected output. Since this was a simple demo, I did not bother to continue the simulation beyond a few thousand iterations. 
+
+![few more iterations](iter3.png) 
 
 ## 5. Conclusion
 
