@@ -23,7 +23,7 @@ Neural networks approximate functions. Like the ones you have already encountere
 
 For the purposes of this and subsequent articles, we shall assume that both \\(\mathbf x\\) and \\(\mathbf y\\) are real valued vectors, not necessarily of the same dimensions. 
 
-Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases, for the case of simplicity, we shall call them all weights). We shall represent them with \\( \mathbf W = [\mathbf w_0, \mathbf w_1, \ldots \mathbf w_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
+Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases. For simplicity, we shall refer to the collection of weights and biases as weights for the rest of the article). We shall represent them with \\( \mathbf W = [\mathbf w_0, \mathbf w_1, \ldots \mathbf w_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
 
 If we represent the neural network with the function 
 
