@@ -7,21 +7,21 @@ description: Evolutionary algorithms for deep learning
 
 # Evolutionary algorithms for deep learning
 
-In recent times, there has been tremendous achievements in the field of deep learning. I certainly do not need to provide a litany of recent events where deep learning has taken the world by storm. If you are reading this out of interest, I would very likely be preaching to the choir. Let us then delve directly into the matter at hand. 
+In recent times, there has been tremendous progress in deep learning. I certainly do not need to provide a litany of recent events wherein deep learning has taken the world by storm. If you are reading this out of interest, I would very likely be preaching to the choir. Let us then delve directly into the matter at hand. 
 
-Let us rather look at ways of implementing evolutionary strategies to augment deep learning. This will be a series of posts that will look into ways of improving deep learning algorithms using evolutionary strategies. 
+Let us look at ways of implementing evolutionary strategies to augment deep learning. This will be part of a series of posts that will explore ways of incorporating evolutionary stratigies into deep learning architectures.
 
-Importantly, this is going to look into realistic scenarios. We are going to generate a (relatively simple) deep learning architecture in [TensorFlow](https://www.tensorflow.org) and optimize them using some evolutionary strategies. 
+We do not wish to end these posts in academic affairs. We wish to look into realistic implementations that everyone can tinker with. We shall generate a (relatively simple) deep learning architecture in [TensorFlow](https://www.tensorflow.org), and optimize them using selected evolutionary strategies. 
 
-## 1. The What ?
+## 1. What are we Solving?
 
 So what problem are we looking at specifically?
 
 ### 1.1. The Mathematical Representation of a Neural Network 
 
-Neural networks approximations of functions. Like the ones you have already encountered in math: \\(  f( \mathbf x ) = \mathbf y\\). \\( \mathbf x \\) goes into the function \\( f() \\), and out comes \\(  \mathbf y \\). Both \\(  \mathbf x \\) and \\(  \mathbf y \\) can be anything. Scalars, vectors, complex vectors, tensors, binary digits, and what have you. \\(  \mathbf y \\) may similarly be eqaually varied. 
+Neural networks approximate functions. Like the ones you have already encountered in math: $f( \mathbf x ) = \mathbf y$. $\mathbf x$ goes into the function $f()$, and out comes $ \mathbf y$. Both $ \mathbf x$ and $\mathbf y$ can be anything. Scalars, vectors, complex vectors, tensors, binary digits, and what have you. $\mathbf y$ may similarly be eqaually varied. 
 
-For the purposes of this and subsequent articles, we shall assume that both \\(  \mathbf x \\) and \\(  \mathbf y \\) are real valued vectors, not necessarily of the same dimensions. 
+For the purposes of this and subsequent articles, we shall assume that both $\mathbf x$ and $\mathbf y$ are real valued vectors, not necessarily of the same dimensions. 
 
 Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases, for the case of simplicity, we shall call them all weights). We shall represent them with \\( \mathbf W = [\mathbf w_0, \mathbf w_1, \ldots \mathbf w_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
 
@@ -183,7 +183,7 @@ def errorValWs(self, X, y, weightsList):
                 errVals.append(errVal)
 
         return errVals
-``` 
+```
 
 
 ### 3.2. Initialization Example
