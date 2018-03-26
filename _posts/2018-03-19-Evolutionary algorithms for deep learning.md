@@ -37,29 +37,38 @@ for all \\( \mathbf x \\).
 
 ### 1.2. Learning
 
-Learning is the process of finding a good set of weights \\(  \mathbf {W_{Opt}} \\). Typical ways of doing this is by some form of gradient descent. Typical algorithms used are the [Steepest Descent](http://mathworld.wolfram.com/MethodofSteepestDescent.html), [Adagrad](https://cs.stanford.edu/~ppasupat/a9online/1107.html), [RMSprop](https://www.coursera.org/learn/deep-neural-network/lecture/BhJlm/rmsprop), and [Adam](https://arxiv.org/abs/1412.6980). 
+Learning is the process of finding a good set of weights \\(  \mathbf {W_{Opt}} \\). In the context of Data Science, we look to find \\(  \mathbf {W_{Opt}} \\) given prior data. 
 
-## 2. The Why ?
+Typical ways of learning involve an iterative algorithm wherein the weights are changed incrementally such that the function traverses the error surface by moving in the direction of the steepest descent toward error minimization. Typical algorithms employed for this purpose are the [Steepest Descent](http://mathworld.wolfram.com/MethodofSteepestDescent.html), [Adagrad](https://cs.stanford.edu/~ppasupat/a9online/1107.html), [RMSprop](https://www.coursera.org/learn/deep-neural-network/lecture/BhJlm/rmsprop), and [Adam](https://arxiv.org/abs/1412.6980). 
 
-There are several problems associated with gradient-based approaches, especially when the optimization dimensionality increases. 
+## 2. Why are we Exploring Alternative Learning Paradigms?
+
+There are several problems associated with gradient-based approaches, especially high-dimensional manifolds. 
 
 1. The error function *must* be differentiable
 2. The error surface *must* be convex (and relatively noiseless)
-3. The path toward descent is one along a local minima
+3. The stepest descent *must* point toward the global minima
 
-Some of these problems can be averted using other non-gradient techniques. These include forms of Evolutionary Algorithms (such as [Genetic Algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm), [Differential Evolution](https://en.wikipedia.org/wiki/Differential_evolution), etc.), or methods such as [Particle Swarm Optimization](https://en.wikipedia.org/wiki/Particle_swarm_optimization) or  [Simulated Annealing](https://en.wikipedia.org/wiki/Simulated_annealing). 
+Some of these problems can be averted using some non-gradient techniques. These include Evolutionary Algorithms (such as [Genetic Algorithms](https://en.wikipedia.org/wiki/Genetic_algorithm), [Differential Evolution](https://en.wikipedia.org/wiki/Differential_evolution)), [Particle Swarm Optimization](https://en.wikipedia.org/wiki/Particle_swarm_optimization) or  [Simulated Annealing](https://en.wikipedia.org/wiki/Simulated_annealing). 
 
 In this article we shall look at one particular algorithm - Genetic Algorithms for the optimization process. In a later article, we shall look at how both the Genetic Algorithm and the a Adam can work together to produce better results. 
 
-## 3. The How ... Show me the code already !!!
+## 3. The Implementation ...
 
-The code is available in the repo: [NNoptExpt](https://github.com/sankhaMukherjee/NNoptExpt). Constructive criticism is always welcome.
+The code is available in the repo: [NNoptExpt](https://github.com/sankhaMukherjee/NNoptExpt). It shall be a testbed for exploring different types of optimization algorithms for the learning process. At the moment of this writing however, it only has a single optimization algorithm - Genetic Algorithms. Constructive criticism is always welcome.
 
 Note that although the code shown below is written using the TensorFlow library, this framework can easily be used for any type of class used.   The code shown below is significantly simplified and all error checking, docstrings, logging removed so that it is much easier to follow.
 
 ### 3.1. A Generic Neural Network Class
 
-So lets create a simple neural network class [full code here](https://github.com/sankhaMukherjee/NNoptExpt/blob/master/src/lib/NNlib/NNmodel.py).  This is relatively simple code. The neural network that we have created is a simple sequential model. The input to this is simply the input (`inpSize`) and  output (`opSize`) sizes, the number of neurons in each layer (`layers`) passed in as a list, and their corresponding activations (`activations`). Each activation is one of the allowed TensorFlow [activations](https://www.tensorflow.org/api_guides/python/nn#Activation_Functions), or `None` in which case, no activation is applied.
+So lets create a simple neural network class [full code here](https://github.com/sankhaMukherjee/NNoptExpt/blob/master/src/lib/NNlib/NNmodel.py).  The neural network that we have created is a simple sequential model. 
+
+The input to this class consists of
+
+- the input (`inpSize`) size, 
+- the output (`opSize`) size, 
+- the number of neurons in each layer (`layers`) passed in as a list, 
+- and their corresponding activations (`activations`). Each activation is one of the allowed TensorFlow [activations](https://www.tensorflow.org/api_guides/python/nn#Activation_Functions), or `None` in which case, no activation is applied. Some libraries such as [Keras](https://keras.io) have a special [linear activation](https://keras.io/activations/) which simply refers to the case of no-activation. 
 
 ```python
 class NNmodel(): 
