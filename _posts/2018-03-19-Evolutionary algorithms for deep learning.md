@@ -131,11 +131,11 @@ Similarly, you only want a single `tf.global_variables_initializer()` operation.
 
 #### 3.1.2. Other Helper Methods
 
-Let us generate a set of helper classes that will be instrumental in making this amenable for optimization using evolutionary techniques.
+Let us generate a set of helper functions that will make it easier to code the evolutionary part of the algorithm.
 
 ##### 3.1.2.1. Getting and Setting Weights
 
-These functions will allow us to get the current weights, and set the weights of the neural network. These functions, when implemented, will allow other algorithms to change the weights of the network within a TensorFlow session. The other algorithms no longer need to remember the details of the neural network. This will allow for arbitrarily complex neural networks to be optimized. 
+These functions will allow us to get the current weights, and set the weights of the neural network. These functions, when implemented, will allow other algorithms to change the weights of the network within a TensorFlow session. The other algorithms no longer need to know the details of the neural network. This will allow for arbitrarily complex neural networks to be optimized. 
 
 ```python
 def getWeights(self, sess=None):
@@ -163,7 +163,7 @@ def setWeights(self, weights, sess):
 
 ##### 3.1.2.2. Calculating Errors and Making Predictions
 
-Getting error values and making predictions. Again, these are self-explanatory. This reduces the burden on the optimizer in knowing about the details of the neural network. The last convenience functions is not necessary, but good to have. Given a set of weights, this will return all errors associated with them. Its utility will become quickly apparent when we generate populations of weights.
+Functions for getting error values and making predictions. Again, these are self-explanatory. These functions reduce the burden on the optimizer in knowing about the details of the neural network. The last convenience functions is not necessary, but good to have. Given a set of weights, this will return all errors associated with them. Its utility will become quickly apparent when we generate populations of weights.
 
 ```python
 def errorValW(self, X, y, weights):
@@ -197,7 +197,7 @@ def errorValWs(self, X, y, weightsList):
 
 ### 3.2. Initialization Example
 
-How do we initialize this? The code below should be sufficient as an explanation. 
+How do we instantanize a class? The code below should be sufficient as an explanation. 
 
  - The input is 2-dimensional
  - There are 2 hidden units (with 5 and 8 neurons respectively), and 
