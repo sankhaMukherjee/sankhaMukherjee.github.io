@@ -19,9 +19,9 @@ So what problem are we looking at specifically?
 
 ### 1.1. The Mathematical Representation of a Neural Network 
 
-Neural networks approximate functions. Like the ones you have already encountered in math: $f( \mathbf x ) = \mathbf y$. $ \mathbf x $ goes into the function $f()$, and out comes $ \mathbf y$. Both $ \mathbf x$ and $\mathbf y$ can be anything. Scalars, vectors, complex vectors, tensors, binary digits, and what have you. $\mathbf y$ may similarly be eqaually varied. 
+Neural networks approximate functions. Like the ones you have already encountered in math: \\( f( \mathbf x ) = \mathbf y \\). \\ (\mathbf x \\)  goes into the function \\(f()\\), and out comes \\( \mathbf y \\). Both \\(\mathbf x \\) and \\(\mathbf y\\) can be anything. Scalars, vectors, complex vectors, tensors, binary digits, and what have you. \\(\mathbf y\\) may similarly be eqaually varied. 
 
-For the purposes of this and subsequent articles, we shall assume that both $\mathbf x$ and $\mathbf y$ are real valued vectors, not necessarily of the same dimensions. 
+For the purposes of this and subsequent articles, we shall assume that both \\(\mathbf x\\) and \\(\mathbf y\\) are real valued vectors, not necessarily of the same dimensions. 
 
 Neural networks *approximate* the function \\( f(  \mathbf x) \\) by using \\(N\\) internal parameters called weights (and sometimes biases, for the case of simplicity, we shall call them all weights). We shall represent them with \\( \mathbf W = [\mathbf w_0, \mathbf w_1, \ldots \mathbf w_{N-1} ]  \\). Practically, all forms of neural networks are represented by these weights and their corresponding *connections* (here, I use the word connections loosely). Connections and weights together form the architecture. 
 
