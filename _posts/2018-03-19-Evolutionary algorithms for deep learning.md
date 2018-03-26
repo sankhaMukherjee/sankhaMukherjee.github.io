@@ -379,7 +379,7 @@ This results in a model that has a total of
 
 `2*5 + 5*8 + 8*10 + 10*10*2 + 10*1 = 340`
 
-So, even for a simple problem like this, we are traversing a 340 dimensional space. This is a fairly complex problem for any algorithm, especially, since we are hoping that the algorithm will be able to evolve toward a meaningful solution.
+So, even for a simple problem like this, we are traversing a 340 dimensional space. This is a fairly complex problem for any algorithm, especially since, in this algorithm, we are hoping that the algorithm will be able to evolve toward a meaningful solution.
 
 Without iteration, the result output of the "best" gene that is randomly generated looks like the following:
 
@@ -399,4 +399,13 @@ After several thousands of iterations, the neural network appears to have settle
 
 ## 5. Conclusion
 
+We have used a genetic algorithms to find potential weights of a neural network. Typically this is done using a gradient-based approach, such as RMS-Prop, or Adam. However, gradient-based methods suffer form a few problems such as:
 
+ - the vanishing gradients problem,
+ - the exploding gradients problem,
+ - a problem where the error surface is non-convex,
+ - problems where there are many local minima in the error surface
+
+Furthermore, it is entirely possible that the NN part of a much more complex problem whose gradient can't even be obtained. The solution is to either calculate numerical gradients, or, to pursue a non-gradient approach, as is shown here. 
+
+This is a particularly simple implementation. In the future, we shall explore much more elaborate methods of optimization using a combination of genetic algorithms and gradient descent. 
