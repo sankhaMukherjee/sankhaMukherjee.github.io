@@ -64,7 +64,7 @@ Now the input has a probability of getting a value. The latent space is the prob
 
 $$ p(z|x) = \frac {p(x|z) p(z)} {p(x)} $$
 
-This encoder equation is typically really difficult to solve, mainly because \\(p(x)\\) is a marginalized function that is nearly impossible to solve in most real-life scenarios. Some approximate this marginalization numerically using MCMC techniques. The other approach is to circumvent the problem entirely by approximating \\(p(z|x)\\) by a new function \\(q(z)\\) (actually \\(q(z|x)\\), but we shall drop the extra term for the purpose of simplifying some of the equations). So, let us redefine the problem. Find \\( q(z) \\) such that 
+This encoder equation is typically really difficult to solve, mainly because \\(p(x)\\) is a marginalized function that is nearly impossible to solve in most real-life scenarios. Some approximate this marginalization numerically using MCMC techniques. The other approach is to circumvent the problem entirely by approximating \\( p(z | x) \\) by a new function \\(q(z)\\) (actually \\( q(z | x) \\), but we shall drop the extra term for the purpose of simplifying some of the equations). So, let us redefine the problem. Find \\( q(z) \\) such that 
 
 $$  q(z) \approx p(z|x) $$
 
