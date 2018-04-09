@@ -54,7 +54,7 @@ In variational autoencoders, the latent space \\( \mathcal{L} \\) is probabilist
 
 As can be seen, the latent space has *two* concentric circles instead of the typical one that represents a node in a neural network. This represents that this quantity is a probability density function rather than a single number. During the forward pass, *a value is sampled* from within the probability distribution. However, in this scheme, there is a problem during the backward pass. 
 
-> How do we differentiate the weights w.r.t. the error when the weights are probabilistic?
+How do we differentiate the weights w.r.t. the error when the weights are probabilistic?
 
 For this, we need to see the encoder-decoder in a different light. We need to involve Bayesian inference in the auto encoder formalism. 
 
