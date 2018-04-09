@@ -60,13 +60,11 @@ For this, we need to see the encoder-decoder in a different light. We need to in
 
 ![p-vae](p-vae.png)
 
-Now the input has a probability of getting a value. The latent space is the probability of obtaining some vector \\(z\\) given the input \\(x\\), and the decoder does the opposite. If we know \\(z\\), finding the decoder is typically very easy. It's a normal neural network. How about the encoder?  In terms of Bayes equation:
+Now the input has a probability of getting a value. The latent space is the probability of obtaining some vector \\(z\\) given the input \\(x\\), and the decoder does the opposite. If we know \\(z\\), finding the decoder is typically very easy. It's a normal neural network. How about the encoder?  In terms of Bayes equation
 
 $$ p(z|x) = \frac {p(x|z) p(z)} {p(x)} $$
 
-This encoder equation is typically really difficult to solve, mainly because \\(p(x)\\) is a marginalized function that is nearly impossible to solve in most real-life scenarios. Some approximate this marginalization numerically using MCMC techniques. The other approach is to circumvent the problem entirely by approximating \\(p(z|x)\\) by a new function \\(q(z)\\) (actually \\(q(z|x)\\), but we shall drop the extra term for the purpose of simplifying some of the equations). So, let us redefine the problem:
-
-Find \\( q(z) \\) such that 
+This encoder equation is typically really difficult to solve, mainly because \\(p(x)\\) is a marginalized function that is nearly impossible to solve in most real-life scenarios. Some approximate this marginalization numerically using MCMC techniques. The other approach is to circumvent the problem entirely by approximating \\(p(z|x)\\) by a new function \\(q(z)\\) (actually \\(q(z|x)\\), but we shall drop the extra term for the purpose of simplifying some of the equations). So, let us redefine the problem. Find \\( q(z) \\) such that 
 
 $$  q(z) \approx p(z|x) $$
 
