@@ -94,11 +94,11 @@ which is the typical way in which the equation is written.
 
 As it turns out, when the two distributions we are trying to map are gaussians, the K-L divergence has a particularly simple [form](https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians):
 
-$$ KL( \mathcal N(\mu_1, \sigma_1) || \mathcal N(\mu_2, \sigma_2) ) = \log(  \frac {\sigma_2} {\sigma_1} ) + \frac {\sigma_1^2 + (\mu_1 - \mu_2)^2} {2 \sigma_2^2} - \frac 1 2$$ .
+$$ KL( \mathcal N(\mu_1, \sigma_1) \|\| \mathcal N(\mu_2, \sigma_2) ) = \log(  \frac {\sigma_2} {\sigma_1} ) + \frac {\sigma_1^2 + (\mu_1 - \mu_2)^2} {2 \sigma_2^2} - \frac 1 2$$ .
 
 More importantly, if one is a standard normal, the result looks like:
 
-$$ KL( \mathcal N(\mu_1, \sigma_1) || \mathcal N(0, 1) ) = \frac 1 2  [ \sigma_1^2 + mu_1^2 -1 - \log( \sigma_1^2 )  ] $$ .
+$$ KL( \mathcal N(\mu_1, \sigma_1) \|\| \mathcal N(0, 1) ) = \frac 1 2  [ \sigma_1^2 + mu_1^2 -1 - \log( \sigma_1^2 )  ] $$ .
 
 
 ## 5. The K-L Divergence View
