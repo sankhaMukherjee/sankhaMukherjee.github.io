@@ -103,7 +103,7 @@ $$ KL( \mathcal N(\mu_1, \sigma_1) \|\| \mathcal N(0, 1) ) = \frac 1 2  [ \sigma
 
 ## 5. The K-L Divergence View
 
-Now that we know that the K-L divergence is a sort of a distance measure, we can simply find a suitable function for \\(q(z)\\) that will approximate \\(p(z|x)\\) using the K-L divergence. Stated in another way, our objective becomes:
+Now that we know that the K-L divergence is a sort of a distance measure, we can simply find a suitable function for \\(q(z)\\) that will approximate \\(p(z\|x)\\) using the K-L divergence. Stated in another way, our objective becomes:
 
 $$  \min  \Big[  KL( q(z) || p(z|x) )  \Big] = \min  \Big[  - \sum q(z) \log \Big(  \frac {p(z|x)} {q(z)}   \Big) \Big] $$
 
