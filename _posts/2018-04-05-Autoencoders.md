@@ -115,7 +115,7 @@ Now, the LHS is constant. On the RHS, we are trying to minimize the first part o
 
 $$ \mathbb E_{q(z)} \big[  \log( p(x|z) ) \big] - KL(  q(z) || p(z) )  $$
 
-The first part of this equation \\(E_{q(z)} \big[  \log( p(x|z) ) \big]\\) is the point-wise difference. The second part is an approximation and acts like a regularization term in normal machine learning applications. 
+The first part of this equation \\(E_{q(z)} \big[  \log( p(x\|z) ) \big]\\) is the point-wise difference. The second part is an approximation and acts like a regularization term in normal machine learning applications. 
 
 ## 5.1. The Gaussian Approximation
 
